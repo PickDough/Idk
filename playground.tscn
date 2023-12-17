@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtbpjy3ypxlyo"]
+
+[ext_resource type="PackedScene" uid="uid://c1y88oo5jxxso" path="res://character.tscn" id="1_fd40s"]
+
+[sub_resource type="Environment" id="Environment_pbuvd"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_cprmy"]
+
+[node name="Playground" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.344971, 0)
+use_collision = true
+size = Vector3(30, 0.2, 30)
+
+[node name="Character" parent="." instance=ExtResource("1_fd40s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.821671, 1.65809, 2.99059)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pbuvd")
+camera_attributes = SubResource("CameraAttributesPractical_cprmy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.620546, 0.78417, 0, -0.78417, 0.620546, 0, 5.18406, 16.1629)
+shadow_enabled = true

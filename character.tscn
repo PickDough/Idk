@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1y88oo5jxxso"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_aj583"]
+[ext_resource type="Script" path="res://input_component.gd" id="2_2yt1g"]
+[ext_resource type="Script" path="res://character_camera.gd" id="3_ulqr3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_konqo"]
+
+[node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_aj583")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872153, -0.355471)
+remote_path = NodePath("../Attributes/Camera3D")
+update_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_konqo")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="InputComponent" type="Node" parent="Components" node_paths=PackedStringArray("character", "camera")]
+script = ExtResource("2_2yt1g")
+character = NodePath("../..")
+camera = NodePath("../../Attributes/Camera3D")
+
+[node name="Attributes" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Attributes" node_paths=PackedStringArray("character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872153, -0.355471)
+script = ExtResource("3_ulqr3")
+character = NodePath("../..")
